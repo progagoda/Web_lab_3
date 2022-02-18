@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+
+body {
+    background-color: #D1BBED;
+    /*background: rgb(220,220,220);*/
+}
+
+.section-lab svg {
+    stroke: rgba(175, 175, 175, 0.92);
+    fill: white;
+    position: absolute;
+    left: 500px;
+    top: 150px;
+}
+
+
+.values {
+    top: 5px;
+}
+.button{
+    background: gray;
+}
+.button:active{
+    background-color:green;
+}
+
+.radio{
+    /*position: absolute;*/
+    /*z-index: -1;*/
+    /*opacity: 0;*/
+    left: 50px;
+    vertical-align: middle;
+}
+input[type="radio"] {
+    display: none;}
+.radio label{
+    outline: 3px ;
+    background-color: grey;
+    border-radius:1px;
+    margin: 2px;
+    padding: 2px;
+
+}
+.radio label:active{
+    background-color: green;
+}
+
+.section-lab .form {
+    font-family: 'Open Sans Condensed', sans-serif;
+    position: absolute;
+    top: 150px;
+    left: 900px;
+    width: 500px;
+    height: 350px;
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    /*background: rgb(144, 144, 144);*/
+    background: #D0B1E5;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.section-lab .y_value {
+    font-size: 20px;
+    margin: 5% 0 0;
+    position: relative;
+    top: 15px;
+    left: 130px;
+}
+
+.section-lab .y_value #Y_value {
+    font-family: 'Open Sans Condensed', sans-serif;
+    width: 145px;
+}
+
+.section-lab .x_value {
+    font-size: 20px;
+    margin: 5% 0 0;
+    position: relative;
+    top: 15px;
+    left: 130px;
+}
+
+.section-lab .x_value #X_value {
+    font-family: 'Open Sans Condensed', sans-serif;
+    width: 143px;
+}
+
+.section-lab .r_value {
+    font-size: 20px;
+    margin: 5% 0 0;
+    position: relative;
+    top: 15px;
+    left: 130px;
+}
+
+.section-lab .r_value #R_value {
+    font-family: 'Open Sans Condensed', sans-serif;
+    width: 153px;
+
+}
+
+.section-lab .text-select-coordinate {
+    text-align: center;
+    font-size: 30px;
+    color: rgb(240, 240, 240);
+}
+
+
+.section-lab .client-button {
+    position: absolute;
+    left: 140px;
+    top: 270px;
+}
+
+.section-lab .client-button {
+    font-size: 15px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    /*background: lightgrey;*/
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    position: relative;
+    top: 22px;
+}
+
+.submit {
+    font-size: 19px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    background: white;
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    position: relative;
+    top: 3px;
+}
+
+.reset {
+    font-size: 19px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    background: white;
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    position: relative;
+    top: 3px;
+    left: 30px;
+}
+
+.submit:hover {
+    color: #D0B1E5;
+}
+
+.reset:hover {
+    color: #D0B1E5;
+}
+
+/*.section-lab .submit:hover{*/
+/*    color: green;*/
+/*}*/
+
+/*.section-lab .reset :hover{*/
+/*    color: green;*/
+/*}*/
+.text-select-coordinate {
+    color: black;
+}
+
+.X_error{
+    margin: 13px;
+    position: relative;
+    top: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: red;
+    font-size: 17px;
+}
+
+.Y_error{
+    margin: 13px;
+    position: relative;
+    top: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: red;
+    font-size: 17px;
+}
+
+.R_error{
+    margin: 13px;
+    position: relative;
+    top: 5px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    color: red;
+    font-size: 17px;
+}
+

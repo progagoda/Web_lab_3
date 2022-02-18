@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:view>
+    <h:head>
+        <title>Application</title>
+    </h:head>
+<h:body>
+    <h:outputStylesheet name="css/user_input.css"/>
+    <h:outputStylesheet name="css/table_section.css"/>
+    <h:outputStylesheet name="css/header.css"/>
+    <div class="main">
+        <ui:include src="app_page/graph.xhtml"/>
+        <ui:include src="app_page/form.xhtml"/>
+        <ui:include src="app_page/table.xhtml"/>
+    </div>
+    </h:body>
+</f:view>
+</html>

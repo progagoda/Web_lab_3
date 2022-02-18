@@ -1,0 +1,42 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core">
+    <h:panelGroup styleClass="table_section">
+        <h:commandButton id="update" styleClass="update" value="Update" action="#{resultBean.update}">
+            <f:ajax render="@all"/>
+        </h:commandButton>
+        <h:dataTable id="table" var="elem" value="#{resultBean.resultList}" >
+            <tr>
+            <h:column>
+                <f:facet name="header">X</f:facet>
+                ${elem.x}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Y</f:facet>
+                ${elem.y}
+            </h:column>
+            <h:column>
+                <f:facet name="header">R</f:facet>
+                ${elem.r}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Current Time</f:facet>
+                ${elem.currentTime}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Execution Time</f:facet>
+                ${elem.executionTime}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Hit</f:facet>
+                ${elem.result}
+            </h:column>
+            </tr>
+        </h:dataTable>
+
+    </h:panelGroup>
+
+
+    </ui:composition>

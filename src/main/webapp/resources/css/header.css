@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
+
+.git_hub_ref{
+    text-decoration: none;
+    color: black;
+}
+
+header{
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 64px;
+    text-align: center;
+    background-color: #D1BBED;
+    /*background: rgb(220,220,220);*/
+    width: 100%;
+}
+
+.page-header-text{
+    color: black ;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 64px;
+    text-align: center;
+}
+

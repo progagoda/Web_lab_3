@@ -1,0 +1,25 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <header class="page-header">
+        <div class="page-header-me">
+            <span  class="page-header-text"><a class="git_hub_ref" href="https://github.com/progagoda"> Artem Brudar</a></span>
+            <span class="page-header-text"><a class="git_hub_ref" href="https://github.com/progagoda">P3212</a></span>
+        </div>
+        <div class="task-header-div">
+            <span class="page-header-text">OPTION 9735</span>
+        </div>
+        <div class="main-block">
+        <div class="time-block">
+            <div id="clock"></div>
+            <div id="date"></div>
+        </div>
+        <h:outputScript name="js/clock.js"/>
+            <div class="next_page">
+                <h:button class="page-button" value="Go to app!" outcome="app"/>
+        </div>
+        </div>
+    </header>
+</ui:composition>
+
