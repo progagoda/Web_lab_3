@@ -24,27 +24,6 @@ body {
     background-color:green;
 }
 
-.radio{
-    /*position: absolute;*/
-    /*z-index: -1;*/
-    /*opacity: 0;*/
-    left: 50px;
-    vertical-align: middle;
-}
-input[type="radio"] {
-    display: none;}
-.radio label{
-    outline: 3px ;
-    background-color: grey;
-    border-radius:1px;
-    margin: 2px;
-    padding: 2px;
-
-}
-.radio label:active{
-    background-color: green;
-}
-
 .section-lab .form {
     font-family: 'Open Sans Condensed', sans-serif;
     position: absolute;
