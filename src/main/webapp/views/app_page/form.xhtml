@@ -19,7 +19,7 @@
 
 <!--            <p class="text-select-coordinate">Select your coordinates!</p>-->
             <div class="values">
-                <div class="x_value">
+                <div class="x_value" id="x_value">
                     <label>Choose X coordinate:</label>
                     <h:commandButton  class="button" value = "-4" action="#{resultBean.newResult.setX(-4)}" />
                     <h:commandButton  class="button" value = "-3" action="#{resultBean.newResult.setX(-3)}" />
@@ -30,17 +30,19 @@
                     <h:commandButton  class="button" value = "2" action="#{resultBean.newResult.setX(2)}" />
                 </div>
 
-                <div class="y_value">
+                <div class="y_value" >
                     <h:outputLabel for="Y_value" value="Select Y coordinate:"/>
                     <h:inputText id="Y_value" maxlength="6" styleClass="Y_value" a:placeholder="Value (-3...3)" value="#{resultBean.newResult.y}"/>
+                    <f:validateDoubleRange minimum="-3" maximum="3"/>
                 </div>
 
 
 
-                <div class="r_value">
+                <div class="r_value" >
                     <h:outputLabel for="R_value" value="Select R coordinate:"/>
                     <h:inputText id="R_value" maxlength="6" styleClass="R_value"  a:placeholder="Value (2...5)" value="#{resultBean.newResult.r}"/>
                     <ace:sliderEntry id="X" min="2" max="5" value="0" stepPercent="0.25" showLabels="true" onSlideEnd="#{resultBean.newResult.r}" />
+                    <f:validateDoubleRange minimum="0" maximum="5"/>
                 </div>
 
 

@@ -35,8 +35,7 @@ public class ResultBean {
 
         makeClickErrors();
         System.out.println(clickResult);
-        if (validator.checkR(clickResult) == "") {
-            coordinatesToValues(clickResult);
+        if (validator.checkR(clickResult).equals("")) {
             makeResult(clickResult);
             resultList.add(clickResult);
             DataBaseManager.addBean(clickResult);
@@ -77,10 +76,6 @@ public class ResultBean {
         xError = "";
         yError = "";
         rError = validator.checkR(clickResult);
-    }
-    public void coordinatesToValues(Result result) {
-        result.setX((float) ((result.getR() * (result.getX() - 150)) / 100) * (4.0f / result.getR()));
-        result.setY((float) ((result.getR() * (150 - result.getY())) / 100) * (4.0f / result.getR()));
     }
 
 

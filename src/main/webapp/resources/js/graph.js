@@ -6,3 +6,12 @@ function checkHit() {
 
     document.forms[0].elements[14].click();
 }
+function reformCoord(){
+  let x=document.getElementById("form:x_value");
+  let y=document.getElementById("form:Y_value");
+  let r=document.getElementById("form:R_value");
+  document.getElementById("form:x_value").setAttribute("value", x);
+  document.getElementById("form:Y_value").setAttribute("value", y);
+  document.getElementById("form:R_value").setAttribute("value", r);
+}
+reformCoord();

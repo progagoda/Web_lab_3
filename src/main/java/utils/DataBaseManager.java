@@ -7,11 +7,12 @@ import javax.faces.view.facelets.FaceletContext;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 public class DataBaseManager {
-    private static final String DB_URL = "jdbc:postgresql://localhost:14840/studs";
-    private static final String USER = "";
-    private static final String PASS = "";
+    @Resource(lookup = "java:/PostgresDS")
+    private static DataSource dataSource;
     private static Connection connection = null;
     private static Statement statement = null;
     private static boolean connected;
@@ -26,7 +27,7 @@ public class DataBaseManager {
         statement=null;
         try {
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            connection = dataSource.getConnection();
             System.out.println("GOOD!");
             if (connection != null) {
                 System.out.println("Успешное подключение к базе данных");
