@@ -5,14 +5,14 @@ import utils.DataBaseManager;
 import utils.HitChecker;
 import utils.Validator;
 
+import javax.faces.annotation.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import java.sql.Time;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 @ManagedBean
 @SessionScoped
 public class ResultBean {
@@ -27,18 +27,26 @@ public class ResultBean {
     private Validator validator = new Validator();
     private List<Result> resultList = new ArrayList<>();
     private int isDrown;
-    private DataBaseManager dataBaseManager = new DataBaseManager();
+    @ManagedProperty(value="#{DataBase}")
+    private DataBaseManager dataBaseManager;
+
+    public DataBaseManager getDataBaseManager() {
+        return dataBaseManager;
+    }
+    public void setDataBaseManager(DataBaseManager dataBaseManager) {
+        this.dataBaseManager = dataBaseManager;
+    }
 
     public void addClick() {
         System.out.println(clickResult);
         clickResult.setR(newResult.getR());
-
         makeClickErrors();
         System.out.println(clickResult);
         if (validator.checkR(clickResult).equals("")) {
+            coordinatesToValues(clickResult);
             makeResult(clickResult);
             resultList.add(clickResult);
-            DataBaseManager.addBean(clickResult);
+            dataBaseManager.addBean(clickResult);
             clickResult = new Result();
             saveSubmitValues(newResult.getX(), newResult.getY(), newResult.getR());
         }
@@ -58,8 +66,7 @@ public class ResultBean {
             if (validator.validate(newResult)) {
                 makeResult(newResult);
                 resultList.add(newResult);
-                DataBaseManager.addBean(newResult);
-
+                dataBaseManager.addBean(newResult);
                 saveSubmitValues(newResult.getX(), newResult.getY(), newResult.getR());
                 System.out.println("addResultMethod");
             } else {
@@ -68,14 +75,18 @@ public class ResultBean {
         }
     }
 
-    public void update() {
-        DataBaseManager.load(resultList);
+    public void update() throws SQLException {
+        dataBaseManager.load(resultList);
     }
 
     public void makeClickErrors() {
         xError = "";
         yError = "";
         rError = validator.checkR(clickResult);
+    }
+    public void coordinatesToValues(Result result) {
+        result.setX((float) ((result.getR() * (result.getX() - 150)) / 100) * (4.0f / result.getR()));
+        result.setY((float) ((result.getR() * (150 - result.getY())) / 100) * (4.0f / result.getR()));
     }
 
 
@@ -205,11 +216,11 @@ public class ResultBean {
         this.validator = validator;
     }
 
-    public List<Result> getResultList() {
+    public List<Result> getResultList() throws SQLException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         String id = facesContext.getExternalContext().getSessionId(false);
         List<Result> resId = new ArrayList<>();
-        DataBaseManager.load(resultList);
+        dataBaseManager.load(resultList);
         if (resultList.size() > 0) {
             for (Result val : resultList) {
                 if ((val.getSession_id().equals(id))) {

@@ -1,33 +1,30 @@
 package utils;
-
 import entity.Result;
 
-import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.FaceletContext;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+
 import javax.annotation.Resource;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.sql.DataSource;
-
+import java.sql.*;
+import java.util.List;
+@ManagedBean(name="DataBase")
 public class DataBaseManager {
+    private  Connection connection;
+    private  Statement statement;
+    private  boolean connected;
     @Resource(lookup = "java:/PostgresDS")
-    private static DataSource dataSource;
-    private static Connection connection = null;
-    private static Statement statement = null;
-    private static boolean connected;
+    private DataSource dataSource;
 
-    static {
-        DataBaseManager.connect();
-
+    public DataSource getDataSource() {
+        return dataSource;
     }
 
-    public static boolean connect() {
-        connection = null;
-        statement=null;
+    public boolean connect(Connection connection) {
         try {
             Class.forName("org.postgresql.Driver");
-            connection = dataSource.getConnection();
+            this.connection = connection;
             System.out.println("GOOD!");
             if (connection != null) {
                 System.out.println("Успешное подключение к базе данных");
@@ -37,7 +34,6 @@ public class DataBaseManager {
             } else {
                 System.out.println("Не удалось подключиться к базе данных!");
             }
-
         } catch (ClassNotFoundException e) {
             System.out.println("Oracle JDBC Driver не найден. Подключите библиотеку PostgreSQL!");
             System.out.println(e.getMessage());
@@ -48,7 +44,7 @@ public class DataBaseManager {
         return false;
     }
 
-    public static boolean addBean(Result result) {
+    public boolean addBean(Result result) {
         String select = "INSERT INTO Hit(x, y, r, currenttime, execution_time, is_hit , session_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         String id =FacesContext.getCurrentInstance().getExternalContext().getSessionId(false);
         try {
@@ -60,16 +56,20 @@ public class DataBaseManager {
             preparedStatement.setDouble(5, result.getExecutionTime());
             preparedStatement.setBoolean(6, result.isResult());
             preparedStatement.setString(7, id);
-            if (preparedStatement.executeUpdate() != 0) return true;
+            if (preparedStatement.executeUpdate() != 0)
+                return true;
         } catch (SQLException e) {
             System.out.println("Ошибка при добавлении бина в базу" + e.getMessage());
+            return false;
         } catch (ClassCastException e) {
             System.out.println("ClassCastException при добавлении в базу");
+            return false;
         }
         return false;
     }
 
-    public static void load(List<Result> list) {
+    public  void load(List<Result> list) throws SQLException {
+        connect(dataSource.getConnection());
         FacesContext facesContext = FacesContext.getCurrentInstance();
         String id = facesContext.getExternalContext().getSessionId(false);
         boolean flag;
@@ -109,27 +109,23 @@ public class DataBaseManager {
     }
 
     public static boolean valX(Float x) {
-        if ((x == null)) return false;
-        else return true;
+        return x != null;
     }
 
     public static boolean valY(Float y) {
-        if ((y == null)) return false;
-        else return true;
+        return y != null;
     }
 
     public static boolean valR(Float r) {
-        if ((r == null)) return false;
-        else return true;
+        return r != null;
     }
 
-    public static boolean clear() {
+    public boolean clear() {
         String request = "TRUNCATE TABLE RESULTS";
         execute(request);
         return true;
     }
-
-    public static boolean execute(String request) {
+    public  boolean execute(String request) {
         try {
             if (statement.execute(request)) return true;
         } catch (SQLException e) {
@@ -139,15 +135,11 @@ public class DataBaseManager {
     }
 
 
-    public static Connection getConnection() {
-        return connection;
-    }
-
-    public static Statement getStatement() {
+    public  Statement getStatement() {
         return statement;
     }
 
-    public static boolean isConnected() {
+    public  boolean isConnected() {
         return connected;
     }
 }
