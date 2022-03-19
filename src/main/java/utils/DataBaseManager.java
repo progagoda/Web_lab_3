@@ -21,10 +21,10 @@ public class DataBaseManager {
         return dataSource;
     }
 
-    public boolean connect(Connection connection) {
+    public boolean connect() {
         try {
             Class.forName("org.postgresql.Driver");
-            this.connection = connection;
+            connection =  dataSource.getConnection();
             System.out.println("GOOD!");
             if (connection != null) {
                 System.out.println("Успешное подключение к базе данных");
